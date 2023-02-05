@@ -1,16 +1,13 @@
 package ru.solarmeister.tinkoffexam.model.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import ru.solarmeister.tinkoffexam.listfilms.listdata.ItemFilm
 import ru.solarmeister.tinkoffexam.listfilms.listdata.VisibleOfFilm
 
 @Dao
 interface FavouritesFilmsDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFilm(film: ItemFilm)
 
     @Query("SELECT * FROM favouritesFilms_table")
