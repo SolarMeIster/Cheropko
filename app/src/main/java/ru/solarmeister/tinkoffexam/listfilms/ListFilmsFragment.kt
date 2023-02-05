@@ -83,13 +83,13 @@ class ListFilmsFragment : Fragment(), ListFilmsRecyclerViewAdapter.OnItemClickLi
 
     override fun onLongClickForAdd(itemFilm: ItemFilm): Boolean {
         listFilmsViewModel.addFavoriteFilm((activity?.application as TinkoffExamApp).filmsDao, itemFilm)
-        return false
+        return true
     }
 
     override fun onLongClickForDelete(itemFilm: ItemFilm): Boolean {
         listFilmsViewModel.deleteFavouriteFilm((activity?.application as TinkoffExamApp).filmsDao, itemFilm)
         visibilities.remove(VisibleOfFilm(itemFilm.filmId, true))
-        return false
+        return true
     }
 
     override fun showErrorFragment() {

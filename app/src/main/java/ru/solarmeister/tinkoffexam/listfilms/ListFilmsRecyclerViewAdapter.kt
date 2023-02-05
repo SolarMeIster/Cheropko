@@ -27,9 +27,10 @@ class ListFilmsRecyclerViewAdapter(
     class ViewHolder(private val binding: ItemFilmBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(info: ItemFilm, onClickListener: OnItemClickListener, visible: Boolean) {
+        fun bind(info: ItemFilm, onClickListener: OnItemClickListener, visible: Boolean ,visibilitiesFavouriteFilms: List<VisibleOfFilm>) {
 
             with(binding) {
+                adapterPosition
                 if (visible) {
                     star.visibility = View.VISIBLE
                 }
@@ -42,15 +43,21 @@ class ListFilmsRecyclerViewAdapter(
                     .into(imageOfFilm)
                 cardView.setOnClickListener { onClickListener.onClick(info.filmId) }
                 cardView.setOnLongClickListener {
+                    var flag = true
                     info.visibilityOfFilm = !info.visibilityOfFilm
-                    if (info.visibilityOfFilm) {
+                    for (element in visibilitiesFavouriteFilms) {
+                        if (element.filmId == info.filmId){
+                            flag = false
+                            break
+                        }
+                    }
+                    if (info.visibilityOfFilm && flag) {
                         star.visibility = View.VISIBLE
                         onClickListener.onLongClickForAdd(info)
                     } else {
                         star.visibility = View.INVISIBLE
                         onClickListener.onLongClickForDelete(info)
                     }
-
                 }
             }
         }
@@ -77,15 +84,14 @@ class ListFilmsRecyclerViewAdapter(
                 val index = visibilitiesFavouriteFilms.indexOf(VisibleOfFilm(info.filmId, true))
                 val visibility = visibilitiesFavouriteFilms[index].visibilityOfFilm
                 if (visibility != null) {
-                    holder.bind(info, itemClickListener, visibility)
+                    holder.bind(info, itemClickListener, visibility, visibilitiesFavouriteFilms)
                 }
             }
-            holder.bind(info, itemClickListener, info.visibilityOfFilm)
+            holder.bind(info, itemClickListener, info.visibilityOfFilm, visibilitiesFavouriteFilms)
         } else {
-            holder.bind(info, itemClickListener, info.visibilityOfFilm)
+            holder.bind(info, itemClickListener, info.visibilityOfFilm, visibilitiesFavouriteFilms)
         }
     }
-
 
     override fun getItemCount(): Int = data.size
 
