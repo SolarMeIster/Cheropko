@@ -32,8 +32,6 @@ class ListFilmsRecyclerViewAdapter(
             with(binding) {
                 if (visible) {
                     star.visibility = View.VISIBLE
-                } else {
-                    star.visibility = View.INVISIBLE
                 }
                 txNameOfFilm.text = info.nameRu
                 txGenreOfFilm.text = info.genres.joinToString(", ") {

@@ -25,7 +25,6 @@ class ListFilmsFragment : Fragment(), ListFilmsRecyclerViewAdapter.OnItemClickLi
     }
 
     private val listFilmsViewModel: ListFilmsViewModel by viewModels()
-    private var dataFromNet = emptyList<ItemFilm>()
     private var visibilities = mutableListOf<VisibleOfFilm>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
