@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TinkoffExam</string>
+    <string name="top">Популярные</string>
+    <string name="error">Error</string>
+    <string name="popular">Популярные</string>
+    <string name="favorites">Избранные</string>
+    <string name="text_network_error">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+    <string name="repeat">Повторить</string>
+    <string name="counties">Страны:\u00A0</string>
+    <string name="genres">Жанры:\u00A0</string>
+</resources>
